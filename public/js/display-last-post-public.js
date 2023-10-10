@@ -42,7 +42,6 @@
 								<p class="label">${categoryName}</p>
 								</div>
 								<h2 class="title">${latestPostTitle}</h2>
-								<p class="text">${Content}</p>
 								<a href=${URLguid} class="button-35"> Read more </a>
 							`
 

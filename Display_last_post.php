@@ -27,7 +27,6 @@ class Display_Last_Post
 
     public function enqueue_styles ()
     {
-            var_dump(plugin_dir_url(__FILE__) . 'public/css/display-last-post-public.css');
             wp_enqueue_style('index', plugin_dir_url(__FILE__) . 'public/css/display-last-post-public.css', array(), null, 'all');
     }
 

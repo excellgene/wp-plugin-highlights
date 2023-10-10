@@ -41,6 +41,7 @@ class Display_Last_Post
   
     public function get_latest_post()
     {
+
         global $wpdb;
         $ret = [];
 

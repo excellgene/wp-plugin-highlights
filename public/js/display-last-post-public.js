@@ -35,7 +35,7 @@
 								<p class="label">${categoryName}</p>
 								</div>
 								<h2 class="title">${latestPostTitle}</h2>
-								<a href=${URLguid} class="button-35"> Read more </a>
+								<a href="https://europe.cphi.com/europe/en/home.html" class="button-35"> Visit CPHI </a>
 							`
 						);
 					} else {

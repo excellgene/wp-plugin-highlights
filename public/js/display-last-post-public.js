@@ -1,7 +1,9 @@
 (function ($) {
+	function addZero(n) {
+		return n < 10 ? '0' + n : n;
+	}
 
 
-	
 	$.ajax({
 		url: url,
 		type: "POST",
@@ -13,7 +15,6 @@
 		.done(function (results) {
 			let data = JSON.parse(results);
 
-
 			if (data.json && data.json.length > 0) {
 				data.json.forEach(category => {
 					let latestPostTitle = category.latest_post;
@@ -22,16 +23,10 @@
 					let URLguid = category.url_post
 					let element;
 
-					function addZero(n) {
-						return n < 10 ? '0' + n : n;
-					}
-
 					let formattedDate = new Date(postDate);
 					let day = addZero(formattedDate.getDate());
 					let month = addZero(formattedDate.getMonth() + 1);
 					let year = formattedDate.getFullYear();
-
-
 
 					if (categoryName === "Events") {
 						element = $('<div class="events"></div>').html(
@@ -42,7 +37,6 @@
 								<h2 class="title">${latestPostTitle}</h2>
 								<a href=${URLguid} class="button-35"> Read more </a>
 							`
-
 						);
 					} else {
 						element = $('<div class="content"></div>').html(
@@ -56,30 +50,22 @@
 						);
 					}
 
-					$(document).ready(function () {
-						let events = $('.events');
-						let content = $('.content');
+					let events = $('.events');
+					let content = $('.content');
 
-						events.each(function (index) {
-							if (index === 0) {
-								$(this).css('grid-area', 'area5');
-							}
-						});
-
-						content.each(function (index) {
-							$(this).css('grid-area', 'area' + (index));
-						});
-
-				
+					events.each(function (index) {
+						if (index === 0) {
+							$(this).css('grid-area', 'area5');
+						}
 					});
 
-
+					content.each(function (index) {
+						$(this).css('grid-area', 'area' + (index));
+					});
 
 					// Ajoutez l'élément à la page
 					$('#blogsHighlight').append(element);
 				});
 			}
 		})
-	
-
 })(jQuery);

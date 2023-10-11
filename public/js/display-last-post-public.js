@@ -1,7 +1,7 @@
 (function ($) {
 
-	console.log('1')
 
+	
 	$.ajax({
 		url: url,
 		type: "POST",
@@ -12,7 +12,6 @@
 	})
 		.done(function (results) {
 			let data = JSON.parse(results);
-			console.log(data.json);
 
 
 			if (data.json && data.json.length > 0) {
@@ -20,7 +19,6 @@
 					let latestPostTitle = category.latest_post;
 					let postDate = category.date;
 					let categoryName = category.category;
-					let Content = category.content;
 					let URLguid = category.url_post
 					let element;
 
@@ -64,13 +62,15 @@
 
 						events.each(function (index) {
 							if (index === 0) {
-								$(this).css('grid-area', 'area1');
+								$(this).css('grid-area', 'area5');
 							}
 						});
 
 						content.each(function (index) {
-							$(this).css('grid-area', 'area' + (index + 2));
+							$(this).css('grid-area', 'area' + (index));
 						});
+
+				
 					});
 
 
@@ -80,7 +80,6 @@
 				});
 			}
 		})
-
-
+	
 
 })(jQuery);

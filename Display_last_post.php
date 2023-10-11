@@ -22,6 +22,7 @@ class Display_Last_Post
         add_action('wp_enqueue_scripts', [$this, 'enqueue_styles']);
 
         add_action('wp_ajax_nopriv_get_latest_post', [$this, 'get_latest_post']);
+        add_action('wp_ajax_get_latest_post', [$this, 'get_latest_post']);
     }
 
 
@@ -84,5 +85,4 @@ class Display_Last_Post
         wp_die();
     }
 }
-
 new Display_Last_Post();

@@ -38,51 +38,59 @@ class Display_Last_Post
         wp_localize_script('index', 'url', [admin_url('admin-ajax.php')]);
     }
 
-  
     public function get_latest_post()
     {
-
         global $wpdb;
         $ret = [];
-
-        foreach(get_categories() as $category){
-            $args = [
-                'post_type' => 'post',
-                'post_status' => 'publish',
-                'category_name' => $category->slug,
-                'posts_per_page' => 1,
-                'orderby' => 'date',
-                'order' => 'DESC',
-            ];
     
-            $query = new WP_Query([
+        // Fetch Categories
+        $categories = get_categories();
+    
+        // Initisialize Counter
+        $count = 0;
+    
+        foreach($categories as $category){
+            if ($category->slug != 'uncategorized' && $category->slug == 'events' || $count > 0) {
+                $args = [
                     'post_type' => 'post',
                     'post_status' => 'publish',
                     'category_name' => $category->slug,
                     'posts_per_page' => 1,
                     'orderby' => 'date',
                     'order' => 'DESC',
-            ]);
-            
-            if ($query->have_posts()) {
-                while ($query->have_posts()) {
-                    $query->the_post();
-                    $ret[] = [
-                        'category' => get_the_category()[0]->name, 
-                        'latest_post' => get_the_title(),
-                        'date' => get_the_date(),
-                        'content' => get_the_excerpt(),
-                        'url_post' => get_permalink()
-                    ];
+                ];
+    
+                $query = new WP_Query($args);
+                
+                if ($query->have_posts()) {
+                    while ($query->have_posts()) {
+                        $query->the_post();
+                        $ret[] = [
+                            'category' => get_the_category()[0]->name, 
+                            'latest_post' => get_the_title(),
+                            'date' => get_the_date(),
+                            'content' => get_the_excerpt(),
+                            'url_post' => get_permalink()
+                        ];
+                    }
+                    wp_reset_postdata();
                 }
-                wp_reset_postdata();
+            }
+    
+            // Implement Count
+            $count++;
+    
+            // Break loop after 4 Categories
+            if ($count > 4) {
+                break;
             }
         }
-
+    
         echo json_encode([
             'json' => $ret,
         ]);
         wp_die();
     }
+
 }
 new Display_Last_Post();

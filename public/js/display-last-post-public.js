@@ -28,7 +28,7 @@
 					let month = addZero(formattedDate.getMonth() + 1);
 					let year = formattedDate.getFullYear();
 
-					if (categoryName === "Events") {
+					if (categoryName === "events") {
 						element = $('<div class="events"></div>').html(
 							`	<div class="postHeader"> 
 								<p class="date"> ${year}/${month}/${day}</p>
@@ -63,9 +63,10 @@
 						$(this).css('grid-area', 'area' + (index));
 					});
 
-					// Ajoutez l'élément à la page
 					$('#blogsHighlight').append(element);
 				});
 			}
 		})
 })(jQuery);
+
+

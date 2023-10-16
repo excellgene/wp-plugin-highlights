@@ -1,34 +1,40 @@
 <?php
+
 /**
- * 
- *  Plugin Name: Display_Last_Post
- *  @author 
- *  @version
- * 
- * 
+     * 
+     *  Plugin Name: Display_Last_Post
+     *  @author 
+     *  @version
+     * 
+     * 
  */
 
 
 class Display_Last_Post
 {
-
-    public $plugin_name = "wp-plugin-highlights";
-    public $version = "1.0.0";
-
     public function __construct()
     {
 
+        /**
+         * Hook sritps and styles 
+         */
         add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
         add_action('wp_enqueue_scripts', [$this, 'enqueue_styles']);
 
+        /**
+         * Hook scripts and styles 
+         */
         add_action('wp_ajax_nopriv_get_latest_post', [$this, 'get_latest_post']);
         add_action('wp_ajax_get_latest_post', [$this, 'get_latest_post']);
+
+
+        add_action('wp_ajax_get_all_post', [$this, 'get_all_post']);
     }
 
 
-    public function enqueue_styles ()
+    public function enqueue_styles()
     {
-            wp_enqueue_style('index', plugin_dir_url(__FILE__) . 'public/css/display-last-post-public.css', array(), null, 'all');
+        wp_enqueue_style('index', plugin_dir_url(__FILE__) . 'public/css/display-last-post-public.css', array(), null, 'all');
     }
 
 
@@ -42,14 +48,14 @@ class Display_Last_Post
     {
         global $wpdb;
         $ret = [];
-    
+
         // Fetch Categories
         $categories = get_categories();
-    
+
         // Initisialize Counter
         $count = 0;
-    
-        foreach($categories as $category){
+
+        foreach ($categories as $category) {
             if ($category->slug != 'uncategorized' && $category->slug == 'events' || $count > 0) {
                 $args = [
                     'post_type' => 'post',
@@ -59,14 +65,14 @@ class Display_Last_Post
                     'orderby' => 'date',
                     'order' => 'DESC',
                 ];
-    
+
                 $query = new WP_Query($args);
-                
+
                 if ($query->have_posts()) {
                     while ($query->have_posts()) {
                         $query->the_post();
                         $ret[] = [
-                            'category' => get_the_category()[0]->name, 
+                            'category' => get_the_category()[0]->name,
                             'latest_post' => get_the_title(),
                             'date' => get_the_date(),
                             'content' => get_the_excerpt(),
@@ -76,21 +82,20 @@ class Display_Last_Post
                     wp_reset_postdata();
                 }
             }
-    
+
             // Implement Count
             $count++;
-    
+
             // Break loop after 4 Categories
             if ($count > 4) {
                 break;
             }
         }
-    
+
         echo json_encode([
             'json' => $ret,
         ]);
         wp_die();
     }
-
 }
 new Display_Last_Post();

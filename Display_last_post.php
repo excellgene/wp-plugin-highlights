@@ -75,7 +75,7 @@ class Display_Last_Post
                             'category' => get_the_category()[0]->name,
                             'latest_post' => get_the_title(),
                             'date' => get_the_date(),
-                            'content' => get_the_excerpt(),
+                            'content' => get_the_content(),
                             'url_post' => get_permalink()
                         ];
                     }

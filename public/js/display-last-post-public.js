@@ -15,12 +15,15 @@
 		.done(function (results) {
 			let data = JSON.parse(results);
 
+			console.log(data);
 			if (data.json && data.json.length > 0) {
 				data.json.forEach(category => {
 					let latestPostTitle = category.latest_post;
 					let postDate = category.date;
 					let categoryName = category.category;
-					let URLguid = category.url_post
+					let URLguid = category.url_post;
+					let contentPost = category.content;
+
 					let element;
 
 					let formattedDate = new Date(postDate);
@@ -35,6 +38,7 @@
 								<p class="label">${categoryName}</p>
 								</div>
 								<h2 class="title">${latestPostTitle}</h2>
+								<p class="contentPost">${contentPost}</p>
 								<a href="https://europe.cphi.com/europe/en/home.html" class="button-35"> Visit CPHI </a>
 							`
 						);

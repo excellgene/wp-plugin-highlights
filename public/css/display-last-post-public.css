@@ -4,225 +4,229 @@
  */
 
 #blogsHighlight {
-   display: grid;
-   grid-template-columns: repeat(3, 1fr);
-   grid-template-rows: repeat(2, 15.75rem);
-   grid-gap: 1rem;
-   grid-template-areas: 
-   "area5 area0 area0" 
-   "area5 area1 area2";
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 15.75rem);
+  grid-gap: 1rem;
+  grid-template-areas:
+    "area5 area0 area0"
+    "area5 area1 area2";
 }
 
 .postHeader {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .label {
-   display: table;
-   background-color: white;
-   color: #FF8C39;
-   padding: 0rem 0.5rem 0rem 0.5rem!important;
-   border-radius: 50px;
-   font-size: 0.7rem!important;
-   margin-top: 0px;
+  display: table;
+  background-color: white;
+  color: #ff8c39;
+  padding: 0rem 0.5rem 0rem 0.5rem !important;
+  border-radius: 50px;
+  font-size: 0.7rem !important;
+  margin-top: 0px;
 }
 
 .date {
-   margin-top: 0;
-   font-size: 0.8rem;
-
+  margin-top: 0;
+  font-size: 0.8rem;
 }
 
 .button-35:hover {
-   box-shadow: white 0 0 0 3px, transparent 0 0 0 0;
+  box-shadow: white 0 0 0 3px, transparent 0 0 0 0;
 }
 
 .wp-block-heading {
-   font-family: 'Inter', sans-serif;
-   font-weight: 200;
-   font-size: 1.25rem;
-   line-height: 1.5rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 200;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
 }
 
 .content {
-   position: relative;
-   border-radius: 30px 0px;
-   border: 1px solid #FF8C39;
-   background-color: #FAF0E4;
-   color: #FF8C39;
-   padding: 1rem 1rem 1rem 1rem;
-   transition: 0.8s;
+  position: relative;
+  border-radius: 30px 0px;
+  border: 1px solid #ff8c39;
+  background-color: white;
+  color: #ff8c39;
+  padding: 1rem 1rem 1rem 1rem;
+  transition: 0.8s;
 }
 
 .content:hover {
-   /* background-color: #A000D9; */
-   background-color: #FF8C39;
-   color:white;
-   /* border:0px solid #A000D9; */
-   border:0px solid #FF8C39;
+  /* background-color: #A000D9; */
+  background-color: #ff8c39;
+  color: white;
+  /* border:0px solid #A000D9; */
+  border: 0px solid #ff8c39;
 }
-.content:hover > .title{
-   color:white;
+.content:hover > .title {
+  color: white;
 }
 
 .content:hover .label {
-   color: #FF8C39;
+  color: #ff8c39;
 }
 
-
-.content:hover .button-35{
-   color: #FF8C39;
+.content:hover .button-35 {
+  color: #ff8c39;
 }
 
-.content>.title {
-   font-family: Manrope;
-   font-size: 1rem!important;
-   font-style: normal;
-   line-height: 1.2rem;
-   margin: 0px;
-   padding: 0px;
-   color: #FF8C39;
+.content > .title {
+  font-family: Manrope;
+  font-size: 1rem !important;
+  font-style: normal;
+  line-height: 1.2rem;
+  margin: 0px;
+  padding: 0px;
+  color: black;
 }
 
-.content>.label {
-   margin-bottom: 0px;
-   font-size: 0.7rem;
-   color: #FF8C39;
+.content > .label {
+  margin-bottom: 0px;
+  font-size: 0.7rem;
+  color: #ff8c39;
 }
 
-.content>.button-35 {
-   position: absolute;
-   bottom: 0%;
-   left: 0%;
-   margin-left: 1rem;
-   margin-bottom: 1rem;
-   margin-left: 1rem;
-   align-items: center;
-   height: 2rem;
-   background-color: white;
-   border-radius: 12px;
-   /* box-shadow: transparent 0 0 0 3px, rgba(18, 18, 18, .1) 0 6px 20px; */
-   box-sizing: border-box;
-   color: #FF8C39;
-   cursor: pointer;
-   display: table;
-   font-family: Inter, sans-serif;
-   font-size: 0.9rem;
-   font-weight: 400;
-   justify-content: center;
-   line-height: 1;
-   outline: none;
-   padding: 0.5rem 0.9rem;
-   text-align: center;
-   text-decoration: none;
-   transition: box-shadow .2s, -webkit-box-shadow .2s;
-   white-space: nowrap;
-   border: 0;
-   user-select: none;
-   -webkit-user-select: none;
-   touch-action: manipulation;
+.content > .button-35 {
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  align-items: center;
+  height: 2rem;
+  background-color: white;
+  border-radius: 12px;
+  /* box-shadow: transparent 0 0 0 3px, rgba(18, 18, 18, .1) 0 6px 20px; */
+  box-sizing: border-box;
+  color: #ff8c39;
+  cursor: pointer;
+  display: table;
+  font-family: Inter, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  justify-content: center;
+  line-height: 1;
+  outline: none;
+  padding: 0.5rem 0.9rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 .events {
-   position: relative;
-   border-radius: 30px 0px;
-   color: white;
-   background-size: 500% 550%;
-   background-image: repeating-linear-gradient(-45deg,
-         hsl(262, 71%, 50%) 0%,
-         /* blau */
-         hsl(25, 91%, 60%) 15%,
-         /* grün */
-         hsl(262, 71%, 50%) 30%,
-         hsl(25, 91%, 60%) 15%);
-   animation: diagonal alternate 10s infinite;
-   padding: 1rem 2rem 2rem 2rem;
+  position: relative;
+  border-radius: 30px 0px;
+  color: white;
+  background-size: 500% 550%;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    hsl(262, 71%, 50%) 0%,
+    /* blau */ hsl(25, 91%, 60%) 15%,
+    /* grün */ hsl(262, 71%, 50%) 30%,
+    hsl(25, 91%, 60%) 15%
+  );
+  animation: diagonal alternate 10s infinite;
+  padding: 1rem 2rem 2rem 2rem;
 }
 
-
-.events>.title {
-   font-family: 'Inter', sans-serif;
-   font-size: 1.8rem!important;
-   line-height: 1.8rem;
-   margin: 0px;
-   padding: 0px;
+.events > .title {
+  font-family: "Inter", sans-serif;
+  font-size: 1.8rem !important;
+  line-height: 1.8rem;
+  margin: 0px;
+  padding: 0px;
 }
 
-.events>.text {
-   font-family: 'Inter', sans-serif;
-   font-size: 10px;
-   margin: 0;
-   padding: 0;
+.events > .text {
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  margin: 0;
+  padding: 0;
 }
 
-.events>.button-35 {
-   position: absolute;
-   bottom: 0%;
-   left: 0%;
-   margin-left: 1rem;
-   margin-bottom: 1rem;
-   margin-left: 2rem;
-   align-items: center;
-   height: 2rem;
-   background-color: transparent;
-   border-radius: 12px;
-   box-shadow: transparent 0 0 0 3px, rgba(18, 18, 18, .1) 0 6px 20px;
-   box-sizing: border-box;
-   color: white !important;
-   cursor: pointer;
-   display: table;
-   font-family: Inter, sans-serif;
-   font-size: 0.9rem;
-   font-weight: 400;
-   justify-content: center;
-   line-height: 1;
-   outline: none;
-   padding: 0.5rem 0.9rem;
-   text-align: center;
-   text-decoration: none;
-   transition: box-shadow .2s, -webkit-box-shadow .2s;
-   white-space: nowrap;
-   border: 0;
-   user-select: none;
-   -webkit-user-select: none;
-   touch-action: manipulation;
+.events > .button-35 {
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+  align-items: center;
+  height: 2rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: transparent 0 0 0 3px, rgba(18, 18, 18, 0.1) 0 6px 20px;
+  box-sizing: border-box;
+  color: #ff8c39 !important;
+  cursor: pointer;
+  display: table;
+  font-family: Inter, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  justify-content: center;
+  line-height: 1;
+  outline: none;
+  padding: 0.5rem 0.9rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 @keyframes diagonal {
-   0% {
-      background-position: 0% 50%
-   }
-   100% {
-      background-position: 100% 50%
-   }
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }
 
 @media only screen and (max-width: 769px) {
-   #blogsHighlight {
-      display: block;
-   }
+  #blogsHighlight {
+    display: block;
+  }
 
-   .content {
-      padding: 1rem 1rem 1rem 1rem !important;
-      margin: 1rem;
-      height: 15rem;
-   }
+  .content {
+    padding: 1rem 1rem 1rem 1rem !important;
+    margin: 1rem;
+    height: 15rem;
+  }
 
-   .events {
-      padding: 1rem 1rem 1rem 1rem !important;
-      margin: 1rem;
-      height: 15rem;
-   }
+  .events {
+    padding: 1rem 1rem 1rem 1rem !important;
+    margin: 1rem;
+    height: 15rem;
+  }
 
-   .bottomContent {
-      margin: 0;
-      width: calc(100% - 2rem) !important;
-      padding: 0 !important;
-   }
+  .bottomContent {
+    margin: 0;
+    width: calc(100% - 2rem) !important;
+    padding: 0 !important;
+  }
 
-   .events>.button-35 {
-      margin-left: 1rem;
-   }
+  .events > .button-35 {
+    margin-left: 1rem;
+  }
+}
+
+.contentPost {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  color: white;
 }

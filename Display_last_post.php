@@ -56,7 +56,7 @@ class Display_Last_Post
         $count = 0;
 
         $content = get_the_content();
-        $content = apply_filters('the_content', $content); 
+        $contentfilters = apply_filters('the_content', $content); 
 
         foreach ($categories as $category) {
             if ($category->slug != 'uncategorized' && $category->slug == 'events' || $count > 0) {
@@ -78,7 +78,7 @@ class Display_Last_Post
                             'category' => get_the_category()[0]->name,
                             'latest_post' => get_the_title(),
                             'date' => get_the_date(),
-                            'content' =>  $content,
+                            'content' =>  $contentfilters,
                             'url_post' => get_permalink()
                         ];
                     }

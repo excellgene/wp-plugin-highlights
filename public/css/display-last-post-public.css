@@ -63,7 +63,7 @@
   border: 0px solid #ff8c39;
 }
 .content:hover > .title {
-  color: white;
+  color: white !important;
 }
 
 .content:hover .label {

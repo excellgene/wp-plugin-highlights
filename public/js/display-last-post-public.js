@@ -14,44 +14,43 @@
 	})
 		.done(function (results) {
 			let data = JSON.parse(results);
-
-			console.log(data);
 			if (data.json && data.json.length > 0) {
 				data.json.forEach(category => {
 					let latestPostTitle = category.latest_post;
 					let postDate = category.date;
 					let categoryName = category.category;
 					let URLguid = category.url_post;
-					let contentPost = category.content;
+					let excerptPost = category.excerpt;
 
 					let element;
-
-					let formattedDate = new Date(postDate);
-					let day = addZero(formattedDate.getDate());
-					let month = addZero(formattedDate.getMonth() + 1);
-					let year = formattedDate.getFullYear();
 
 					if (categoryName === "events") {
 						element = $('<div class="events"></div>').html(
 							`	<div class="postHeader"> 
-								<p class="date"> ${year}/${month}/${day}</p>
+								<p class="date"> ${postDate}</p>
 								<p class="label">${categoryName}</p>
 								</div>
 								<h2 class="title">${latestPostTitle}</h2>
-								<p class="contentPost">${contentPost}</p>
+								<p class="contentPost">${excerptPost}</p>
 								<a href="https://europe.cphi.com/europe/en/home.html" class="button-35"> Visit CPHI </a>
 							`
 						);
+						element.click(function () {
+							window.location.href = "https://europe.cphi.com/europe/en/home.html";
+						});
 					} else {
 						element = $('<div class="content"></div>').html(
-							` <div class="postHeader"> 
-							<p class="date"> ${year}/${month}/${day}</p>
+							`<div class="postHeader"> 
+							<p class="date"> ${postDate}</p>
 							<p class="label">${categoryName}</p>
 							</div>
-          					 <h2 class="title">${latestPostTitle}</h2>
-							   <a href=${URLguid} class="button-35"> Read more </a>
+								<h2 class="title">${latestPostTitle}</h2>
+								<p class="contentPost">${excerptPost}</p>
 						   `
 						);
+						element.click(function () {
+							window.location.href = `${URLguid}`;
+						});
 					}
 
 					let events = $('.events');
@@ -68,6 +67,7 @@
 					});
 
 					$('#blogsHighlight').append(element);
+
 				});
 			}
 		})

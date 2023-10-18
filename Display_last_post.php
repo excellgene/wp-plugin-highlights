@@ -55,9 +55,6 @@ class Display_Last_Post
         // Initisialize Counter
         $count = 0;
 
-        $content = get_the_content();
-        $contentfilters = apply_filters('the_content', $content); 
-
         foreach ($categories as $category) {
             if ($category->slug != 'uncategorized' && $category->slug == 'events' || $count > 0) {
                 $args = [
@@ -68,17 +65,21 @@ class Display_Last_Post
                     'orderby' => 'date',
                     'order' => 'DESC',
                 ];
-
+        
                 $query = new WP_Query($args);
-
+        
                 if ($query->have_posts()) {
                     while ($query->have_posts()) {
                         $query->the_post();
+        
+                        $excerpt = get_the_excerpt(); // Obtenez l'extrait
+                        $excerptlimit = wp_trim_words($excerpt, 20, '...'); // Limitez à trois phrases
+        
                         $ret[] = [
                             'category' => get_the_category()[0]->name,
                             'latest_post' => get_the_title(),
-                            'date' => get_the_date(),
-                            'content' =>  $contentfilters,
+                            'date' => get_the_date("j M Y"),
+                            'excerpt' =>  $excerptlimit,
                             'url_post' => get_permalink()
                         ];
                     }

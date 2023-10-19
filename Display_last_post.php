@@ -21,11 +21,15 @@ class Display_Last_Post
         add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
         add_action('wp_enqueue_scripts', [$this, 'enqueue_styles']);
 
-        /**
-         * Hook scripts and styles 
-         */
         add_action('wp_ajax_nopriv_get_latest_post', [$this, 'get_latest_post']);
         add_action('wp_ajax_get_latest_post', [$this, 'get_latest_post']);
+
+        add_filter( 'et_builder_load_requests', function( $builder_load_requests ) {
+            $builder_load_requests['action'][] = 'wp_ajax_nopriv_get_latest_post';
+            $builder_load_requests['action'][] = 'wp_ajax_get_latest_post';
+            
+            return $builder_load_requests;
+        });
 
 
         add_action('wp_ajax_get_all_post', [$this, 'get_all_post']);
@@ -49,19 +53,14 @@ class Display_Last_Post
         if ($query->have_posts()) {
             while ($query->have_posts()) {
                 $query->the_post();
-
-                $content = apply_filters( 'the_content', get_the_content() );
-
-                $excerpt = get_the_excerpt(); // Obtenez l'extrait
-                $excerptlimit = wp_trim_words($excerpt, 20, '...'); 
-    
-
+                $excerpt = get_the_excerpt();
+                // $excerptlimit = wp_trim_words($excerpt, 20, '...'); 
+                
                 $ret = [
                     'category' => get_the_category()[0]->name,
                     'latest_post' => get_the_title(),
                     'date' => get_the_date("j M Y"),
-                    'content' => esc_html($content, 0, 19),
-                    'excerpt' =>  $excerptlimit,
+                    // 'excerpt' =>  $excerptlimit,
                     'url_post' => get_permalink()
                 ];
             }
@@ -77,7 +76,6 @@ class Display_Last_Post
         foreach($categories as $category) {
             $ret[] = $category->name;
         }
-
         return $ret;
     }
 
@@ -96,18 +94,10 @@ class Display_Last_Post
         
         $categories = $this->parse_categories_to_get_only_name(get_categories());
 
-
         $this->remove_events($categories);
 
-
-      
-
-        // Fetch Categories
         $cat = array_slice($categories, 0,3);
 
-        // echo '<pre>';
-        // var_dump($categories);
-        // wp_die();
         $posts = [];
 
         foreach (array_merge($cat, ["events"]) as $category) {
@@ -126,8 +116,6 @@ class Display_Last_Post
                 $posts[] = $this->formated_post($query);
             }
         }
-
-        
 
         echo json_encode([
             'json' => $posts,

@@ -20,14 +20,14 @@
 }
 
 .label {
-  display: table;
+  display: table!important;
   text-transform: uppercase;
   font-weight: 600;
   background-color: white;
   color: #ff8c39;
-  padding: 0rem 0.5rem 0rem 0.5rem !important;
+  /* padding: 0rem 0.3rem 0rem 0.3rem !important; */
   border-radius: 5px;
-  font-size: 0.7rem !important;
+  font-size: 0.6rem !important;
   margin-top: 0px;
 }
 
@@ -87,10 +87,10 @@
 
 .content > .title {
   font-family: Manrope;
-  font-size: 1.5rem !important;
+  font-size: 1.3rem !important;
   font-weight: 700 !important;
   /* font-style: normal; */
-  line-height: 1.2rem;
+  line-height: 1.5rem;
   margin: 0px;
   padding: 0px;
 }
@@ -154,6 +154,7 @@
   font-family: Manrope;
 
   font-size: 1.5rem !important;
+  line-height: 1.5rem;
   font-weight: 700 !important;
   margin: 0px;
   padding: 0px;

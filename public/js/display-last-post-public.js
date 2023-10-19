@@ -21,10 +21,6 @@
 					let categoryName = category.category;
 					let URLguid = category.url_post;
 					let excerptPost = category.excerpt;
-
-					const contentPost = category.content;
-					console.log(contentPost)
-
 					let element;
 
 					if (categoryName === "events") {
@@ -34,7 +30,6 @@
 								<p class="label">${categoryName}</p>
 								</div>
 								<h2 class="title">${latestPostTitle}</h2>
-								<p class="contentPost">${excerptPost}</p>
 								<a href="https://europe.cphi.com/europe/en/home.html" class="button-35"> Visit CPHI </a>
 							`
 						);
@@ -48,7 +43,7 @@
 							<p class="label">${categoryName}</p>
 							</div>
 								<h2 class="title">${latestPostTitle}</h2>
-								<p class="contentPost">${excerptPost}</p>
+
 						   `
 						);
 						element.click(function () {

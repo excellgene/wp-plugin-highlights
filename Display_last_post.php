@@ -15,12 +15,11 @@ class Display_Last_Post
     public function __construct()
     {
 
-        /**
-         * Hook sritps and styles 
-         */
+        // load scripts and style
         add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
         add_action('wp_enqueue_scripts', [$this, 'enqueue_styles']);
 
+        // link api endpoints to method for private and public navigation
         add_action('wp_ajax_nopriv_get_latest_post', [$this, 'get_latest_post']);
         add_action('wp_ajax_get_latest_post', [$this, 'get_latest_post']);
 
@@ -45,7 +44,7 @@ class Display_Last_Post
     public function enqueue_scripts()
     {
         wp_enqueue_script('index', plugin_dir_url(__FILE__) . 'public/js/display-last-post-public.js', ['jquery']);
-        wp_localize_script('index', 'url', [admin_url('admin-ajax.php')]);
+        wp_localize_script('index', 'url', [ admin_url('admin-ajax.php') ]);
     }
 
     public function formated_post($query)
@@ -54,13 +53,12 @@ class Display_Last_Post
             while ($query->have_posts()) {
                 $query->the_post();
                 $excerpt = get_the_excerpt();
-                // $excerptlimit = wp_trim_words($excerpt, 20, '...'); 
-                
+
                 $ret = [
                     'category' => get_the_category()[0]->name,
                     'latest_post' => get_the_title(),
                     'date' => get_the_date("j M Y"),
-                    // 'excerpt' =>  $excerptlimit,
+                    'excerpt' =>  $excerpt,
                     'url_post' => get_permalink()
                 ];
             }

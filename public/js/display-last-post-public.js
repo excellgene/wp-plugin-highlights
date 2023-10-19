@@ -1,9 +1,4 @@
 (function ($) {
-	function addZero(n) {
-		return n < 10 ? '0' + n : n;
-	}
-
-
 	$.ajax({
 		url: url,
 		type: "POST",
@@ -21,8 +16,11 @@
 					let categoryName = category.category;
 					let URLguid = category.url_post;
 					let excerptPost = category.excerpt;
-					let element;
 
+					console.log(excerptPost)
+
+
+					let element;
 					if (categoryName === "events") {
 						element = $('<div class="events"></div>').html(
 							`	<div class="postHeader"> 

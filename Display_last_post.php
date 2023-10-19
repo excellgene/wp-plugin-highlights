@@ -71,37 +71,51 @@ class Display_Last_Post
         return $ret;
     }
 
-    public function remove_events($array) 
+    public function parse_categories_to_get_only_name($categories)
+    {
+        $ret = [];
+        foreach($categories as $category) {
+            $ret[] = $category->name;
+        }
+
+        return $ret;
+    }
+
+    public function remove_events(&$array) 
     {
         foreach($array as $key => $value) {
-            if($value === "events") {
+            if($value === 'events') {
                 unset($array[$key]);
             }
         }
-
-        return $array;
     }
 
     public function get_latest_post()
     {
         global $wpdb;
         
-        $categories = $this->remove_events(get_categories());
-        
-        var_dump($categories);
-        wp_die();
+        $categories = $this->parse_categories_to_get_only_name(get_categories());
+
+
+        $this->remove_events($categories);
+
+
+      
 
         // Fetch Categories
-        $categories = array_slice($categories, 0,3);
+        $cat = array_slice($categories, 0,3);
 
+        // echo '<pre>';
+        // var_dump($categories);
+        // wp_die();
         $posts = [];
 
-        foreach (array_merge($categories, ['events']) as $category) {
-            if ($category->slug != 'uncategorized') {
+        foreach (array_merge($cat, ["events"]) as $category) {
+            if ($category != 'uncategorized') {
                 $args = [
                     'post_type' => 'post',
                     'post_status' => 'publish',
-                    'category_name' => $category->slug,
+                    'category_name' => $category,
                     'posts_per_page' => 1,
                     'orderby' => 'date',
                     'order' => 'DESC',

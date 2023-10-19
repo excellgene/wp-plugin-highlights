@@ -103,6 +103,7 @@
 
 .events {
   position: relative;
+  grid-area: area5;
   border-radius: 20px;
   color: white;
   background-size: 500% 550%;
@@ -139,6 +140,7 @@
 
 .events:hover {
   z-index: 9999;
+  cursor: pointer;
   transform: translateX(-2px) translateY(-2px);
   transition: all 0.7s;
 }

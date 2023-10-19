@@ -44,19 +44,60 @@ class Display_Last_Post
         wp_localize_script('index', 'url', [admin_url('admin-ajax.php')]);
     }
 
+    public function formated_post($query)
+    {
+        if ($query->have_posts()) {
+            while ($query->have_posts()) {
+                $query->the_post();
+
+                $content = apply_filters( 'the_content', get_the_content() );
+
+                $excerpt = get_the_excerpt(); // Obtenez l'extrait
+                $excerptlimit = wp_trim_words($excerpt, 20, '...'); 
+    
+
+                $ret = [
+                    'category' => get_the_category()[0]->name,
+                    'latest_post' => get_the_title(),
+                    'date' => get_the_date("j M Y"),
+                    'content' => esc_html($content, 0, 19),
+                    'excerpt' =>  $excerptlimit,
+                    'url_post' => get_permalink()
+                ];
+            }
+            wp_reset_postdata();
+        }
+
+        return $ret;
+    }
+
+    public function remove_events($array) 
+    {
+        foreach($array as $key => $value) {
+            if($value === "events") {
+                unset($array[$key]);
+            }
+        }
+
+        return $array;
+    }
+
     public function get_latest_post()
     {
         global $wpdb;
-        $ret = [];
+        
+        $categories = $this->remove_events(get_categories());
+        
+        var_dump($categories);
+        wp_die();
 
         // Fetch Categories
-        $categories = get_categories();
+        $categories = array_slice($categories, 0,3);
 
-        // Initisialize Counter
-        $count = 0;
+        $posts = [];
 
-        foreach ($categories as $category) {
-            if ($category->slug != 'uncategorized' && $category->slug == 'events' || $count > 0) {
+        foreach (array_merge($categories, ['events']) as $category) {
+            if ($category->slug != 'uncategorized') {
                 $args = [
                     'post_type' => 'post',
                     'post_status' => 'publish',
@@ -67,37 +108,15 @@ class Display_Last_Post
                 ];
         
                 $query = new WP_Query($args);
-        
-                if ($query->have_posts()) {
-                    while ($query->have_posts()) {
-                        $query->the_post();
-        
-                        $excerpt = get_the_excerpt(); // Obtenez l'extrait
-                        $excerptlimit = wp_trim_words($excerpt, 20, '...'); // Limitez à trois phrases
-        
-                        $ret[] = [
-                            'category' => get_the_category()[0]->name,
-                            'latest_post' => get_the_title(),
-                            'date' => get_the_date("j M Y"),
-                            'excerpt' =>  $excerptlimit,
-                            'url_post' => get_permalink()
-                        ];
-                    }
-                    wp_reset_postdata();
-                }
-            }
-
-            // Implement Count
-            $count++;
-
-            // Break loop after 4 Categories
-            if ($count > 4) {
-                break;
+                
+                $posts[] = $this->formated_post($query);
             }
         }
 
+        
+
         echo json_encode([
-            'json' => $ret,
+            'json' => $posts,
         ]);
         wp_die();
     }

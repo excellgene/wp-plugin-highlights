@@ -21,7 +21,7 @@
 					let categoryName = category.category;
 					let URLguid = category.url_post;
 					let excerptPost = category.excerpt;
-
+					const contentPost = category.content;
 					let element;
 
 					if (categoryName === "events") {

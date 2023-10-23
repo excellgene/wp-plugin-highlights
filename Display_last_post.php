@@ -1,14 +1,9 @@
 <?php
-
-/**
-     * 
-     *  Plugin Name: Display_Last_Post
-     *  @author 
-     *  @version
-     * 
-     * 
- */
-
+ /**
+  *  Plugin Name: Display_Last_Post
+  *  @author 
+  *  @version
+  */
 
 class Display_Last_Post
 {
@@ -22,16 +17,6 @@ class Display_Last_Post
         // link api endpoints to method for private and public navigation
         add_action('wp_ajax_nopriv_get_latest_post', [$this, 'get_latest_post']);
         add_action('wp_ajax_get_latest_post', [$this, 'get_latest_post']);
-
-        add_filter( 'et_builder_load_requests', function( $builder_load_requests ) {
-            $builder_load_requests['action'][] = 'wp_ajax_nopriv_get_latest_post';
-            $builder_load_requests['action'][] = 'wp_ajax_get_latest_post';
-            
-            return $builder_load_requests;
-        });
-
-
-        add_action('wp_ajax_get_all_post', [$this, 'get_all_post']);
     }
 
 
@@ -52,7 +37,7 @@ class Display_Last_Post
         if ($query->have_posts()) {
             while ($query->have_posts()) {
                 $query->the_post();
-                $excerpt = get_the_excerpt();
+                $excerpt = do_shortcode(get_the_excerpt());
 
                 $ret = [
                     'category' => get_the_category()[0]->name,

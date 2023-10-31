@@ -17,8 +17,6 @@
                     let URLguid = category.url_post;
                     let excerptPost = category.excerpt;
 
-                    console.log(excerptPost)
-
 
                     let element;
                     if (categoryName === "events") {

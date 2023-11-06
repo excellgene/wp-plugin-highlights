@@ -5,20 +5,10 @@
         global: false,
         data: {
             'action': 'get_latest_post',
-            // 'action': 'get_all_categories'
         }
-    });
-        $.ajax({
-            url:url,
-            type:"POST",
-            global: false,
-            data: {
-                action:'get_all_categories'
-            }
-        })
+    })
         .done(function (results) {
             let data = JSON.parse(results);
-            console.log(data)
             if (data.json && data.json.length > 0) {
                 data.json.forEach(category => {
                     let latestPostTitle = category.latest_post;
@@ -26,7 +16,6 @@
                     let categoryName = category.category;
                     let URLguid = category.url_post;
                     let excerptPost = category.excerpt;
-
 
                     let element;
                     if (categoryName === "events") {

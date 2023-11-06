@@ -105,5 +105,13 @@ class Display_Last_Post
         ]);
         wp_die();
     }
+
+    public function get_all_categories()
+    {
+
+        $text = "hello world";
+        return $text;
+
+    }
 }
 new Display_Last_Post();

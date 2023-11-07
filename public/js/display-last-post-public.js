@@ -25,11 +25,11 @@
                                 <p class="label">${categoryName}</p>
                                 </div>
                                 <h2 class="title">${latestPostTitle}</h2>
-                                <a href="https://europe.cphi.com/europe/en/home.html" class="button-35"> Visit CPHI </a>
+                                <a href="https://informaconnect.com/bioeurope/" class="button-35"> Visit Bio-Europe </a>
                             `
                         );
                         element.click(function () {
-                            window.location.href = "https://europe.cphi.com/europe/en/home.html";
+                            window.location.href = "https://informaconnect.com/bioeurope/";
                         });
                     } else {
                         element = $('<div class="content"></div>').html(
